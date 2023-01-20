@@ -8,25 +8,32 @@ import { auth } from './firebase';
 
 function App() {
   const user = useSelector(selectUser)
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
-  useEffect(() =>{
-    auth.onAuthStateChanged((authUser) =>{
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
       if(authUser){
         dispatch(login({
-
-        }))
-        console.log(authUser)
-      }else{
+          uid: authUser.uid,
+          email:authUser.email,
+          displayName:authUser.displayName,
+          photo: authUser.photoURL,
+        })
+        
+        )
+        console.log(authUser);
+      } else{
         dispatch(logout())
       }
+      
     })
-  },[dispatch])
+  }, [dispatch])
+        
 
   return (
     <div className="App">
       {
-        user ? (<Quora/>) : (<Login/>)
+        user ? (<Quora />) : (<Login/>)
       }
     </div>
   );
