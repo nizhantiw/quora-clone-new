@@ -24,7 +24,7 @@ export default function Feed() {
         key={id}
         id={id}
         image={question.imageUrl}
-        question={question.question}
+        question={question.questions}
         timestamp={question.timestamp}
         quoraUser={question.user}
         
